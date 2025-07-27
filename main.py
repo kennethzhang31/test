@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, redirect
 import datetime
 
@@ -12,5 +13,7 @@ def log_ip():
         f.write(f"{now} - IP: {ip}, UA: {ua}\n")
     return redirect("https://www.google.com")
 
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    port = int(os.environ.get("PORT", 10000))  # 🟢 THIS IS REQUIRED
+    app.run(host='0.0.0.0', port=port)
